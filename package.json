@@ -1,0 +1,15 @@
+{
+  "name": "cut_rope",
+  "version": "1.0.0",
+  "description": "cut rope（割绳子）",
+  "main": "event.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cut rope",
+    "割绳子"
+  ],
+  "author": "jiezhiyong",
+  "license": "MIT"
+}

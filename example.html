@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./zepto.js"></script>
+  <script src="./event.js"></script>
+  <script src="./touch.js"></script>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  #cup-rope-box {
+    overflow: hidden;
+    width:100%;
+    height:250px;
+    box-shadow:0px 0px 40px rgba(0,0,0,.2) inset;
+  }
+  #cup-rope-box ul  li {
+    list-style:none;
+    position: absolute;
+    width:60px;
+    height:60px;
+    top:20%;
+    background: url('./red.png') no-repeat;
+    background-size: 100% 100%;
+    background-position: center；
+  }
+  li span {
+    position: absolute;
+    width: 100%;
+    height:400%;
+    top:-400%;
+    left:0;
+  }
+  li:after {
+    content: " ";
+    position: absolute;
+    width: 5px;
+    height:400%;
+    top:-400%;
+    left:49%;
+    background: url('./rope.png') repeat-y;
+    transition: all .25s ease-out 0s;
+    transform: scaleX(.5);
+  }
+  li:nth-child(1) {
+    left:10%;
+    animation: swing 5s linear 0s infinite;
+  }
+  li:nth-child(2) {
+    left:31%;
+    animation: swing 6s linear 0s infinite;
+  }
+  li:nth-child(3) {
+    left:53%;
+    animation: swing 5.25s linear 0s infinite;
+  }
+  li:nth-child(4) {
+    left:74%;
+    animation: swing 6.25s linear 0s infinite;
+  }
+  li.animated {
+    transition:top .25s ease-out 0s;
+    top:28.5% !important;
+    animation: bounce 1s linear 0s;
+    background-image: url('./red-2.png') !important;
+    background-size: 90% 90% !important;
+  }
+  li.animated:after {
+    opacity: 0;
+    background: #aaa;
+  }
+  @keyframes swing {
+    from {
+      transform: rotate3d(0,0,1,3deg) translate3d(-20%,-3%,0);
+    }
+    25% {
+      transform: rotate3d(0,0,0,0) translate3d(0,0,0);
+    }
+    50% {
+      transform: rotate3d(0,0,1,-3deg) translate3d(20%,-3%,0);
+    }
+    75% {
+      transform: rotate3d(0,0,0,0) translate3d(0,0,0);
+    }
+    100% {
+      transform: rotate3d(0,0,1,3deg) translate3d(-20%,-3%,0);
+    }
+  }
+  @keyframes bounce {
+    from, 20%, 53%, 80%, to {
+      -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      -webkit-transform: translate3d(0,0,0);
+      transform: translate3d(0,0,0);
+    }
+
+    40%, 43% {
+      -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      -webkit-transform: translate3d(0, -25px, 0) scale3d(1.08,0.9,1);
+      transform: translate3d(0, -25px, 0) scale3d(1.08,0.9,1);
+    }
+
+    70% {
+      -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      -webkit-transform: translate3d(0, -10px, 0) scale3d(1.05,0.95,1);
+      transform: translate3d(0, -10px, 0) scale3d(1.05,0.95,1);
+    }
+
+    90% {
+      -webkit-transform: translate3d(0,-4px,0) scale3d(1.01,0.99,1);
+      transform: translate3d(0,-4px,0) scale3d(1.01,0.99,1);
+    }
+  }
+  </style>
+</head>
+<body>
+  <div id='cup-rope-box'>
+    <ul>
+      <li><span></span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+    $('li').swipe(function(){
+      $(this).addClass('animated');
+    });
+    $('li').tap(function(){
+      $(this).addClass('animated');
+    });
+  </script>
+</body>
+</html>
